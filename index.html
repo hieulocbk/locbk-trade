@@ -1,16 +1,154 @@
-﻿Mục Tiêu: Top 5% Trader
-LOCBK TRADER
-Hành trình kỷ luật, quản trị rủi ro và làm chủ xác suất trên thị trường tài chính.
-01. Tư Duy Xác Suất
-Thị trường là trò chơi của xác suất. Không tìm kiếm sự chắc chắn 100%, chỉ tập trung vào lợi thế thương mại (Trading Edge) và sự nhất quán.
-02. Quản Trị Rủi Ro
-Bảo vệ vốn là ưu tiên hàng đầu. Luôn đặt cắt lỗ (Stop Loss), tuyệt đối không gồng lỗ và quản lý size lệnh chặt chẽ theo từng thương vụ.
-03. Kỷ Luật & Tâm Lý
-Kiểm soát cảm xúc, loại bỏ FOMO và trả thù thị trường. Tuân thủ kế hoạch giao dịch như một cỗ máy đã được lập trình.
-Nguyên Tắc Cốt Lõi
-* Luôn phân tích đa khung thời gian trước khi vào lệnh.
-* Chỉ giao dịch khi có đủ tín hiệu từ hệ thống (Trading Plan).
-* Tỷ lệ Risk : Reward tối thiểu là 1 : 2.
-* Ghi chép nhật ký giao dịch chi tiết sau mỗi lệnh thắng/thua.
-* Chấp nhận thua lỗ như một chi phí kinh doanh bắt buộc.
-© 2026 LOCBK Trader. Tất cả hành trình đều bắt đầu từ bước đi đầu tiên.
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao Diện Hiện Đại</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-top: 8px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn:active {
+            transform: scale(0.99);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: #f1f5f9;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="card-header">
+            <h1>Xin chào 👋</h1>
+            <p>Nhập thông tin bên dưới để tiếp tục sử dụng dịch vụ.</p>
+        </div>
+
+        <form id="mainForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="username">Tên người dùng</label>
+                <input type="text" id="username" placeholder="Nhập tên của bạn..." required>
+            </div>
+
+            <button type="submit" class="btn">Xác nhận</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const inputVal = document.getElementById('username').value;
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.innerText = `Đã nhận thông tin: ${inputVal}`;
+        }
+    </script>
+
+</body>
+</html>
